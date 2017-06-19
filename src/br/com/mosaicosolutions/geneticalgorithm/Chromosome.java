@@ -1,6 +1,8 @@
 package br.com.mosaicosolutions.geneticalgorithm;
 
+import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Random;
 import java.util.function.Supplier;
 
 /**
@@ -51,8 +53,8 @@ public final class Chromosome {
     }
 
     public void fill(Supplier<Boolean> forEachBit) {
-
+    	System.out.println(forEachBit.get());
         for (int i = 0; i < chromosome.length(); i++)
-            chromosome.set(i, forEachBit.get());
+            chromosome.set(i, new Random().nextInt(1));// forEachBit.get()? 1:0);
     }
 }

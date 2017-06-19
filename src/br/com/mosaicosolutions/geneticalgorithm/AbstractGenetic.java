@@ -1,7 +1,10 @@
 package br.com.mosaicosolutions.geneticalgorithm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Genetic Algorithm Java Classes
@@ -40,15 +43,22 @@ public abstract class AbstractGenetic {
         this.chromosomes = new ArrayList<>(numberOfChromosomes);
 
         for (int i = 0; i < numberOfChromosomes; i++) {
-            Chromosome chromosome = new Chromosome(numberOfGenesPerChromosome);
+            /*Chromosome chromosome = new Chromosome(numberOfGenesPerChromosome);
 
-            chromosome.fill(() -> Math.random() < 0.5);
-            chromosomes.add(chromosome);
+            chromosome.fill(() -> Math.random() < 0.5);//new Random(2).nextFloat() < 0.5);
+            chromosomes.add(chromosome);*/
+            
+            chromosomes.add(new Chromosome(this.numberOfGenesPerChromosome));
+            for (int j = 0; j < this.numberOfGenesPerChromosome; j++) {
+                chromosomes.get(i).setBit(j, Math.random() < 0.5);
+            }
         }
+        
+        
     }
 
     public void sort() {
-        this.chromosomes.sort((o1, o2) -> (int) (1000 * (o2.getFitness() - o1.getFitness())));
+        this.chromosomes.sort((o1, o2) -> (int) (1000 * (o1.getFitness() - o2.getFitness())));
     }
 
     private void initializeRouletteWheel() {
@@ -90,6 +100,7 @@ public abstract class AbstractGenetic {
     public void evolve() {
         calculateFitness();
         sort();
+        //System.out.println(Arrays.toString(this.chromosomes.toArray()));
         doCrossovers();
         doMutations();
         doRemoveDuplicates();

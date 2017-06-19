@@ -35,11 +35,12 @@ public class Genetic extends AbstractGenetic {
             base *= 2;
         }
         x /= 102.4f;
+        //System.out.println("float=" + x);
         return x;
     }
 
     private float fitness(float x) {
-        return (float)(Math.sin(x) * Math.cos(0.4f * x) * Math.asin(3.0f * x) + 0.2);
+        return (float) Math.pow(x,2); //(Math.sin(x) * Math.sin(0.4f*x) * Math.sin(3.0f*x));
     }
 
     public void print() {

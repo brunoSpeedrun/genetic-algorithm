@@ -19,7 +19,7 @@ public class Program {
             if (args.length == 1) {
                 Properties properties = loadPropertiesFromFile(args[0]);
                 
-                int genesPerChromosome = Integer.valueOf(properties.getProperty("genes.per.chromosome"));
+                int genesPerChromosome = 10;//Integer.valueOf(properties.getProperty("genes.per.chromosome"));
                 int numberOfChromosomes = Integer.valueOf(properties.getProperty("number.of.chromosomes"));
                 float crossoverFraction = Float.valueOf(properties.getProperty("crossover.fraction"));
                 float mutationFraction = Float.valueOf(properties.getProperty("mutation.fraction"));
