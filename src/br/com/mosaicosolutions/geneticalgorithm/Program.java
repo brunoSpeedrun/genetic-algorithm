@@ -16,13 +16,11 @@ public class Program {
     public static void main(String[] args) {
         new Thread(() -> {
 
-            if (args.length == 1) {
-                Properties properties = loadPropertiesFromFile(args[0]);
                 
                 int genesPerChromosome = 10;//Integer.valueOf(properties.getProperty("genes.per.chromosome"));
-                int numberOfChromosomes = Integer.valueOf(properties.getProperty("number.of.chromosomes"));
-                float crossoverFraction = Float.valueOf(properties.getProperty("crossover.fraction"));
-                float mutationFraction = Float.valueOf(properties.getProperty("mutation.fraction"));
+                int numberOfChromosomes = 20;
+                float crossoverFraction = 0.6f;
+                float mutationFraction = 0.2f;
                 
                 System.out.println("genes.per.chromosome : " + genesPerChromosome);
                 System.out.println("number.of.chromosomes: " + numberOfChromosomes);
@@ -56,9 +54,6 @@ public class Program {
                         geneticExperiment.print();
                     }
                 }
-
-            } else
-                throw new IllegalArgumentException(getMessageErro());
 
         }).start();
     }
